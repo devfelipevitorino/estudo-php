@@ -10,7 +10,3 @@ $conn = new mysqli($serverName, $usuario, $senha, $db_nome);
 if ($conn->connect_error) {
     die('Falha na conexão com o banco: ' . $conn->connect_error);
 }
-
-echo "Conectado com sucesso";
-
-$conn->close();
