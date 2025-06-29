@@ -16,7 +16,7 @@ if (!isset($_SESSION['usuario_id'])) {
 </head>
 
 <body>
-<?php include '../database/listar_servicos_process.php'; ?>
+    <?php include '../database/listar_servicos_process.php'; ?>
     <div class="pagina-dashboard">
         <header class="dashboard-header">
             <h1 class="titulo-bemvindo">Bem-vindo, <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>!</h1>
@@ -29,23 +29,23 @@ if (!isset($_SESSION['usuario_id'])) {
                 <table class="tabela-servicos">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>Registro</th>
                             <th>Nome do Cliente</th>
                             <th>Serviço Feito</th>
                             <th>Valor</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($servicos as $servico): ?>
+                        <?php foreach ($vendas as $venda): ?>
                             <tr>
-                                <td><?php echo htmlspecialchars($servico['id']); ?></td>
-                                <td><?php echo htmlspecialchars($servico['nome']); ?></td>
-                                <td><?php echo htmlspecialchars($servico['descricao']); ?></td>
-                                <td>R$ <?php echo number_format($servico['valor'], 2, ',', '.'); ?></td>
+                                <td><?php echo htmlspecialchars($venda['id']); ?></td>
+                                <td><?php echo htmlspecialchars($venda['nome_cliente']); ?></td>
+                                <td><?php echo htmlspecialchars($venda['nome_servico']); ?></td>
+                                <td>R$ <?php echo number_format($venda['valor'], 2, ',', '.'); ?></td>
                             </tr>
                         <?php endforeach; ?>
 
-                        <?php if (empty($servicos)): ?>
+                        <?php if (empty($vendas)): ?>
                             <tr>
                                 <td colspan="4" style="text-align: center;">Nenhum serviço registrado.</td>
                             </tr>
