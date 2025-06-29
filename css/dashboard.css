@@ -4,3 +4,95 @@
     box-sizing: border-box;
 }
 
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    width: 100%;
+}
+
+.dashboard-box {
+    background-color: #1e222f;
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 0 20px #00000060;
+    color: #fff;
+}
+
+.tabela-servicos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabela-servicos th, .tabela-servicos td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+}
+
+.tabela-servicos th {
+    background-color: #0a84ff;
+    color: white;
+}
+
+.tabela-servicos tr:hover {
+    background-color: #2a2f42;
+    transition: background 0.3s;
+}
+
+.titulo-h2 {
+    margin-bottom: 15px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.pagina-dashboard {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-header {
+    position: relative;
+    background-color: #1e222f;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px #00000050;
+}
+
+.titulo-bemvindo {
+    margin: 0;
+    font-size: 24px;
+}
+
+.btn-sair {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #0a84ff;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.btn-sair:hover {
+    background-color: #005bb5;
+}
+
+.footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 20px;
+    background-color: #1e222f;
+    color: #ccc;
+    font-size: 14px;
+}
