@@ -1,12 +1,11 @@
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-ob_start(); 
 session_start();
 
 include 'database.php';
 
-if (isset($_POST['btn_login'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario_form = $_POST['usuario'] ?? '';
     $senha_form = $_POST['senha'] ?? '';
 
@@ -22,17 +21,16 @@ if (isset($_POST['btn_login'])) {
             $_SESSION['usuario_id'] = $row['id'];
             $_SESSION['usuario_nome'] = $usuario_form;
 
-            header("Location: ../pages/dashboard.php");
-            exit();
+            echo 'ok';
         } else {
-            echo "Usuário ou senha inválidos.";
+            echo 'Senha incorreta.';
         }
     } else {
-        echo "Usuário ou senha inválidos.";
+        echo 'Usuário não encontrado.';
     }
 
     $stmt->close();
     $conn->close();
 } else {
-    echo "Formulário não enviado corretamente.";
+    echo 'Requisição inválida.';
 }
