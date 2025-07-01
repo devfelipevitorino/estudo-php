@@ -88,6 +88,47 @@
     background-color: #005bb5;
 }
 
+.tabela-servicos tr {
+    width: 100%;
+}
+
+.tabela-servicos td.acoes {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.btn-editar, .btn-remover {
+    padding: 6px 12px;
+    border: none;
+    text-decoration: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.btn-editar {
+    background-color: #3498db;
+}
+
+.btn-editar:hover {
+    background-color: #2980b9;
+}
+
+.btn-remover {
+    background-color: #e74c3c;
+}
+
+.btn-remover:hover {
+    background-color: #c0392b;
+}
+
+
 .footer {
     margin-top: auto;
     text-align: center;
