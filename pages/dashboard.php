@@ -16,7 +16,7 @@ if (!isset($_SESSION['usuario_id'])) {
 </head>
 
 <body>
-    <?php include '../database/servicos/listar_servicos_process.php'; ?>
+    <?php include '../database/servicos/listar.php'; ?>
     <div class="pagina-dashboard">
         <header class="dashboard-header">
             <h1 class="titulo-bemvindo">Bem-vindo, <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>!</h1>
@@ -33,7 +33,7 @@ if (!isset($_SESSION['usuario_id'])) {
                             <th>Nome do Cliente</th>
                             <th>Serviço Feito</th>
                             <th>Valor</th>
-                            <th>Ações</th> <!-- Adicione isso -->
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,6 +57,8 @@ if (!isset($_SESSION['usuario_id'])) {
                         <?php endif; ?>
                     </tbody>
                 </table>
+
+                <a href="../database/servicos/criar.php" class="btn-criar">Adicionar serviço</a>
             </section>
         </main>
 

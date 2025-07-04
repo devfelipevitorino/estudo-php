@@ -6,7 +6,8 @@ if (!isset($_SESSION['usuario_id'])) {
     exit();
 }
 
-include '../database.php'; 
+include '../database.php';
+
 
 $id = $_GET['id'] ?? null;
 if (!$id) {
@@ -26,11 +27,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
 }
 
-$stmt = $conn->prepare("SELECT * FROM venda WHERE id = ?");
+
+$stmt = $conn->prepare("
+    SELECT v.*, s.nome AS nome_servico 
+    FROM venda v
+    JOIN servico s ON v.servico_id = s.id
+    WHERE v.id = ?
+");
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $result = $stmt->get_result();
 $venda = $result->fetch_assoc();
+
+if (!$venda) {
+    echo "Venda não encontrada.";
+    exit();
+}
+
 ?>
 
 <h2 class="form-title">Editar Venda</h2>
@@ -39,10 +52,15 @@ $venda = $result->fetch_assoc();
     <label for="nome_cliente">Nome do Cliente:</label>
     <input type="text" id="nome_cliente" name="nome_cliente" value="<?php echo htmlspecialchars($venda['nome_cliente']); ?>" required>
 
+    <label for="nome_servico">Serviço Feito:</label>
+    <input type="text" id="nome_servico" name="nome_servico"
+        value="<?php echo htmlspecialchars($venda['nome_servico']); ?>"
+        readonly>
+
     <label for="valor">Valor:</label>
     <input type="number" id="valor" name="valor" step="0.01" value="<?php echo $venda['valor']; ?>" required>
 
-    <button type="submit">Salvar</button>
+    <button type="button" type="submit">Salvar</button>
     <button onclick="history.back()" style="background: #c0392b;">Voltar</button>
 </form>
 

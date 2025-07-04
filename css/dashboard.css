@@ -101,7 +101,7 @@
     padding-bottom: 10px;
 }
 
-.btn-editar, .btn-remover {
+.btn-editar, .btn-remover, .btn-criar {
     padding: 6px 12px;
     border: none;
     text-decoration: none;
@@ -126,6 +126,18 @@
 
 .btn-remover:hover {
     background-color: #c0392b;
+}
+
+.btn-criar {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    background-color: #657a1a;
+    transition: 0.5s;
+}
+
+.btn-criar:hover {
+    background-color: #327219;
 }
 
 
