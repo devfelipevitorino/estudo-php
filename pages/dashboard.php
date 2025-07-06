@@ -58,7 +58,7 @@ if (!isset($_SESSION['usuario_id'])) {
                     </tbody>
                 </table>
 
-                <a href="../database/servicos/criar.php" class="btn-criar">Adicionar serviço</a>
+                <a href="../database/servicos/criar.php" class="btn-criar">Adicionar Venda</a>
             </section>
         </main>
 
