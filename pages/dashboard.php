@@ -16,16 +16,16 @@ if (!isset($_SESSION['usuario_id'])) {
 </head>
 
 <body>
-    <?php include '../database/servicos/listar.php'; ?>
+    <?php include '../database/venda/listar.php'; ?>
     <div class="pagina-dashboard">
         <header class="dashboard-header">
             <h1 class="titulo-bemvindo">Bem-vindo, <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>!</h1>
             <a class="btn-sair" href="../database/logout.php">Sair</a>
         </header>
-
+        
         <main class="dashboard-container">
             <section class="dashboard-box">
-                <h2 class="titulo-h2">Serviços Realizados</h2>
+                <h2 class="titulo-h2">Vendas Finalizados</h2>
                 <table class="tabela-servicos">
                     <thead>
                         <tr>
@@ -44,21 +44,58 @@ if (!isset($_SESSION['usuario_id'])) {
                                 <td><?php echo htmlspecialchars($venda['nome_servico']); ?></td>
                                 <td>R$ <?php echo number_format($venda['valor'], 2, ',', '.'); ?></td>
                                 <td class="acoes">
-                                    <a href="../database/servicos/editar.php?id=<?php echo $venda['id']; ?>" class="btn-editar">Editar</a>
-                                    <a href="../database/servicos/remover.php?id=<?php echo $venda['id']; ?>" class="btn-remover" onclick="return confirm('Tem certeza que deseja remover este registro?');">Remover</a>
+                                    <a href="../database/venda/editar.php?id=<?php echo $venda['id']; ?>" class="btn-editar">Editar</a>
+                                    <a href="../database/venda/remover.php?id=<?php echo $venda['id']; ?>" class="btn-remover" onclick="return confirm('Tem certeza que deseja remover este registro?');">Remover</a>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                            
+                            <?php if (empty($vendas)): ?>
+                                <tr>
+                                <td colspan="4" style="text-align: center;">Nenhum serviço registrado.</td>
+                            </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>    
+                    <a href="../database/venda/criar.php" class="btn-criar">Adicionar Venda</a>
+                </section>
+                
+                
+                <section class="dashboard-box">
+                <?php include '../database/servico/listar.php'; ?>
+                <h2 class="titulo-h2">Serviços Cadastrados</h2>
+                <table class="tabela-servicos">
+                    <thead>
+                        <tr>
+                            <th>Registro</th>
+                            <th>Nome do Serviço</th>
+                            <th>Valor</th>
+                            <th>Descrição</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($servicos as $servico): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($servico['id']); ?></td>
+                                <td><?php echo htmlspecialchars($servico['nome']); ?></td>
+                                <td>R$ <?php echo number_format($servico['valor'], 2, ',', '.'); ?></td>
+                                <td><?php echo htmlspecialchars($servico['descricao']); ?></td>
+                                <td class="acoes">
+                                    <a href="../database/servico/editar.php?id=<?php echo $servico['id']; ?>" class="btn-editar">Editar</a>
+                                    <a href="../database/servico/remover.php?id=<?php echo $servico['id']; ?>" class="btn-remover" onclick="return confirm('Tem certeza que deseja remover este registro?');">Remover</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
 
-                        <?php if (empty($vendas)): ?>
+                        <?php if (empty($servicos)): ?>
                             <tr>
                                 <td colspan="4" style="text-align: center;">Nenhum serviço registrado.</td>
                             </tr>
                         <?php endif; ?>
                     </tbody>
-                </table>
-
-                <a href="../database/servicos/criar.php" class="btn-criar">Adicionar Venda</a>
+                </table>    
+                <a href="../database/servico/criar.php" class="btn-criar">Adicionar Serviço</a>
             </section>
         </main>
 

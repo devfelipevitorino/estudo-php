@@ -10,16 +10,34 @@
     align-items: center;
     padding: 40px;
     width: 100%;
+    margin-top: 20px;    
 }
 
 .dashboard-box {
+    display: flex;
+    flex-direction: column;
     background-color: #1e222f;
     padding: 30px;
     border-radius: 10px;
-    width: 100%;
+    width: 50%;
+    margin: 5px;
+    max-height: 500px;
+    min-height: 500px;
     max-width: 900px;
     box-shadow: 0 0 20px #00000060;
     color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px #00000080;
+}
+
+@media (max-width: 768px) {
+    .dashboard-box {
+        width: 90%;
+    }
 }
 
 .tabela-servicos {
@@ -42,6 +60,19 @@
 .tabela-servicos tr:hover {
     background-color: #2a2f42;
     transition: background 0.3s;
+}
+
+.tabela-servicos tr {
+    width: 100%;
+}
+
+.tabela-servicos td.acoes {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .titulo-h2 {
@@ -82,23 +113,11 @@
     text-decoration: none;
     font-size: 14px;
     transition: background 0.3s;
+    cursor: pointer;
 }
 
 .btn-sair:hover {
     background-color: #005bb5;
-}
-
-.tabela-servicos tr {
-    width: 100%;
-}
-
-.tabela-servicos td.acoes {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
 }
 
 .btn-editar, .btn-remover, .btn-criar {
@@ -110,6 +129,7 @@
     font-size: 14px;
     transition: background-color 0.3s ease;
     display: inline-block;
+    cursor: pointer;
 }
 
 .btn-editar {
@@ -139,7 +159,6 @@
 .btn-criar:hover {
     background-color: #327219;
 }
-
 
 .footer {
     margin-top: auto;
