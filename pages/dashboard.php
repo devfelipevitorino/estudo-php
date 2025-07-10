@@ -43,8 +43,10 @@ if (!isset($_SESSION['usuario_id'])) {
                                 <td><?php echo htmlspecialchars($venda['nome_cliente']); ?></td>
                                 <td><?php echo htmlspecialchars($venda['nome_servico']); ?></td>
                                 <td>R$ <?php echo number_format($venda['valor'], 2, ',', '.'); ?></td>
-                                <td class="acoes">
+                                <td>
                                     <a href="../database/venda/editar.php?id=<?php echo $venda['id']; ?>" class="btn-editar">Editar</a>
+                                </td>
+                                <td>
                                     <a href="../database/venda/remover.php?id=<?php echo $venda['id']; ?>" class="btn-remover" onclick="return confirm('Tem certeza que deseja remover este registro?');">Remover</a>
                                 </td>
                             </tr>
@@ -58,6 +60,7 @@ if (!isset($_SESSION['usuario_id'])) {
                         </tbody>
                     </table>    
                     <a href="../database/venda/criar.php" class="btn-criar">Adicionar Venda</a>
+                    <a href="../pages/agendamento.php" class="btn-criar">Agendamentos</a>
                 </section>
                 
                 
@@ -83,6 +86,8 @@ if (!isset($_SESSION['usuario_id'])) {
                                 <td><?php echo htmlspecialchars($servico['descricao']); ?></td>
                                 <td class="acoes">
                                     <a href="../database/servico/editar.php?id=<?php echo $servico['id']; ?>" class="btn-editar">Editar</a>
+                                </td>
+                                <td>
                                     <a href="../database/servico/remover.php?id=<?php echo $servico['id']; ?>" class="btn-remover" onclick="return confirm('Tem certeza que deseja remover este registro?');">Remover</a>
                                 </td>
                             </tr>
