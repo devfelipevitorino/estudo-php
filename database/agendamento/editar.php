@@ -18,9 +18,10 @@ if (!$id) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome_cliente = $_POST['nome_cliente'];
     $valor = $_POST['valor'];
+    $data_agendamento = $_POST['data_agendamento'];
 
-    $stmt = $conn->prepare("UPDATE venda SET nome_cliente = ?, valor = ? WHERE id = ?");
-    $stmt->bind_param("sdi", $nome_cliente, $valor, $id);
+    $stmt = $conn->prepare("UPDATE agendamento SET nome_cliente = ?, valor = ?, data_agendamento = ?  WHERE id = ?");
+    $stmt->bind_param("sdsi", $nome_cliente, $valor, $data_agendamento, $id);
     $stmt->execute();
 
     header("Location: ../../pages/dashboard.php");
@@ -29,37 +30,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 $stmt = $conn->prepare("
-    SELECT v.*, s.nome AS nome_servico 
-    FROM venda v
-    JOIN servico s ON v.servico_id = s.id
-    WHERE v.id = ?
+    SELECT a.*, s.nome AS nome_servico 
+    FROM agendamento a
+    JOIN servico s ON a.servico_id = s.id
+    WHERE a.id = ?
 ");
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $result = $stmt->get_result();
-$venda = $result->fetch_assoc();
+$agendamento = $result->fetch_assoc();
 
-if (!$venda) {
-    echo "Venda não encontrada.";
+if (!$agendamento) {
+    echo "Agendamento não encontrada.";
     exit();
 }
 
 ?>
 
-<h2 class="form-title">Editar Venda</h2>
+<h2 class="form-title">Editar Agendamento</h2>
 
 <form method="POST" class="edit-form">
     <label for="nome_cliente">Nome do Cliente:</label>
-    <input type="text" id="nome_cliente" name="nome_cliente" value="<?php echo htmlspecialchars($venda['nome_cliente']); ?>" required>
+    <input type="text" id="nome_cliente" name="nome_cliente" value="<?php echo htmlspecialchars($agendamento['nome_cliente']); ?>" required>
 
     <label for="nome_servico">Serviço Feito:</label>
     <input type="text" id="nome_servico" name="nome_servico"
-        value="<?php echo htmlspecialchars($venda['nome_servico']); ?>"
+        value="<?php echo htmlspecialchars($agendamento['nome_servico']); ?>"
         readonly>
 
     <label for="valor">Valor:</label>
     <input type="number" id="valor" name="valor" step="0.01" value="<?php echo $venda['valor']; ?>" required>
 
+    <label for="valor">Data do Agendamento:</label>
+    <input type="text" id="valor" name="data_agendamento" step="0.01" value="<?php echo $agendamento['data_agendamento']; ?>" required>
+    
     <button type="button" type="submit">Salvar</button>
     <button onclick="history.back()" style="background: #c0392b;">Voltar</button>
 </form>

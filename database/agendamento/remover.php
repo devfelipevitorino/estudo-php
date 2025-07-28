@@ -10,7 +10,7 @@ include '../database.php';
 $id = $_GET['id'] ?? null;
 
 if ($id) {
-    $stmt = $conn->prepare("DELETE FROM venda WHERE id = ?");
+    $stmt = $conn->prepare("DELETE FROM agendamento WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
 }
